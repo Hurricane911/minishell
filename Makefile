@@ -27,7 +27,9 @@ LIBFT = $(LIBFT_DIR)/libft.a
 
 SRC_DIR = src
 SRC_DIRS = $(SRC_DIR) \
-			$(SRC_DIR)/parsing \
+			$(SRC_DIR)/parser \
+			$(SRC_DIR)/parser/0.tokenization \
+			$(SRC_DIR)/parser/1.parser_tokens \
 			$(SRC_DIR)/utils \
 			# $(SRC_DIR)/testcases
 

@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 10:58:16 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/07 14:22:12 by joyim            ###   ########.fr       */
+/*   Created: 2025/04/07 14:14:09 by joyim             #+#    #+#             */
+/*   Updated: 2025/04/07 14:20:11 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int main()
+void print_error(int error_code);
+
+void print_error(int error_code)
 {
-	// if(ac < 2)
-	// 	return(1);
-	// else
-		// tokenization(av[1]);
-	
-	tokenization("\'hello world\'");
-	
+	if(error_code == FAILURE)
+		ft_putendl_fd(MSG_FAILURE, 2);
+	else if(error_code == UNCLOSED_SINGLE_QUOTE)
+		ft_putendl_fd(MSG_UNCLOSED_SINGLE_QUOTE, 2);
+	else if(error_code == UNCLOSED_DOUBLE_QUOTE)
+		ft_putendl_fd(MSG_UNCLOSED_DOUBLE_QUOTE, 2);
+	else
+		ft_putendl_fd("unknown error", 2);
 }
