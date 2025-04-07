@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 11:51:13 by joyim             #+#    #+#             */
-/*   Updated: 2025/02/06 19:11:56 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/07 11:02:38 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdarg.h>
+# include "ft_printf.h"
 
 
 int		ft_isalpha(int c);

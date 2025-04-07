@@ -46,28 +46,28 @@ LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
 all: $(NAME)
 
 #build libft
-libft:
-	@make -C $(LIBFT_DIR)
+$(LIBFT):
+	make -C $(LIBFT_DIR)
 
 # Generates output file
-$(NAME): $(OBJ) libft
+$(NAME): $(OBJ) $(LIBFT)
 	$(CC) $(CFLAGS) $(OBJ) -o $(NAME) $(LIBFT_FLAGS)
 
 # Create .o from .c file, store all object files in obj directory
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c 
-	@mkdir -p $(dir $@)
+	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) -I$(INC_DIR) -c $< -o $@
 
 # Create object directory if it doesn't exist
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
 remake_libft:
-	@make re -C $(LIBFT_DIR)
+	make re -C $(LIBFT_DIR)
 
 clean:
 	$(RM) $(OBJ_DIR)
-	@make clean -C $(LIBFT_DIR)
+	make clean -C $(LIBFT_DIR)
 
 fclean: clean
 	$(RM) $(NAME)
