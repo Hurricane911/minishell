@@ -6,17 +6,17 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:55:28 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/08 14:36:01 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/08 23:11:01 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-int tokenization (char *input);
-int save_word_or_seperator(int *i_current, char *input, int from);
-static void save_word(char *input, int i_current, int from);
-static void save_seperator(char *input, int i_current, int type);
+int tokenization (char *input, t_data *data);
+int save_word_or_seperator(int *i_current, char *input, int from, s_token **token);
+static void save_word(char *input, int i_current, int from, s_token **token);
+static void save_seperator(char *input, int i_current, int type, s_token **token);
 
-int tokenization (char *input)
+int tokenization (char *input, t_data *data)
 {
 	int i_current;
 	int end;
@@ -32,7 +32,7 @@ int tokenization (char *input)
 		is_quote = check_quote(is_quote, input, i_current);
 		// ft_printf("%d\n", is_quote);
 		if(is_quote == NO_QUOTE) //0
-			from = save_word_or_seperator(&i_current, input, from);
+			from = save_word_or_seperator(&i_current, input, from, &data->token);
 	}
 	if(is_quote != NO_QUOTE)
 	{
@@ -47,7 +47,7 @@ int tokenization (char *input)
 	return (SUCCESS);
 }
 
-int save_word_or_seperator(int *i_current, char *input, int from)
+int save_word_or_seperator(int *i_current, char *input, int from, s_token **token)
 {
 	int type;
 	type = get_seperator(input, *i_current);
@@ -57,12 +57,12 @@ int save_word_or_seperator(int *i_current, char *input, int from)
 		// ft_printf("%s", "hel2\n");
 		if((*i_current) != 0 && !get_seperator(input, *i_current - 1))
 			// ft_printf("%s", "hel");
-			save_word(input, *i_current, from);
+			save_word(input, *i_current, from, token);
 		
 		if((type > WORD) || type == END_OF_FILE)
 		{
 			// ft_printf("%d", REDIRECT_OUT);
-			save_seperator(input, *i_current, type);
+			save_seperator(input, *i_current, type, token);
 			if(type == APPEND || type == HEREDOC)
 				(*i_current)++;
 		}
@@ -71,7 +71,7 @@ int save_word_or_seperator(int *i_current, char *input, int from)
 	return (from);
 }
 
-static void save_word(char *input, int i_current, int from)
+static void save_word(char *input, int i_current, int from, s_token **token)
 {
 	int i;
 	char *word;
@@ -83,11 +83,12 @@ static void save_word(char *input, int i_current, int from)
 	while(i < i_current)
 		word[i++] = input[from++];
 	word[i] = '\0';
-	ft_printf("%s\n", word);
+	// ft_printf("%s\n", word);
+	append_token(token, create_token(word, WORD));
 	// ft_printf("end");
 }
 
-static void save_seperator(char *input, int i_current, int type)
+static void save_seperator(char *input, int i_current, int type, s_token **token)
 {
 	int i;
 	char *sep;
@@ -108,6 +109,7 @@ static void save_seperator(char *input, int i_current, int type)
 	while(i < sep_len)
 		sep[i++] = input[i_current++];
 	sep[i] = '\0';
-	ft_printf("%s\n", sep);
+	// ft_printf("%s\n", sep);
+	append_token(token, create_token(sep, type));
 
 }
