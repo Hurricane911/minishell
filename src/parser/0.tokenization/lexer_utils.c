@@ -6,11 +6,14 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:27:16 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/07 20:01:01 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/08 14:22:37 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int check_quote(int is_quote, char *input, int i_current);
+int get_seperator(char *input, int i_current);
 
 int check_quote(int is_quote, char *input, int i_current)
 {
@@ -31,15 +34,15 @@ int get_seperator(char *input, int i_current)
 		return (SPACES);
 	else if (input[i_current] == '|')
 		return (PIPE);
-	else if (input[i_current] == '<' && input[i_current] == '<')
+	else if (input[i_current] == '<' && input[i_current + 1] == '<')
 		return(HEREDOC);
 	else if (input[i_current] == '<')
 		return(REDIRECT_IN);
-	else if (input[i_current] == '>' && input[i_current] == '>')
+	else if (input[i_current] == '>' && input[i_current + 1] == '>')
 		return(APPEND);
-	else if (input[i_current == '>'])
+	else if (input[i_current] == '>')
 		return (REDIRECT_OUT);
-	else if (input[i_current] == '\0');
+	else if (input[i_current] == '\0')
 		return (END_OF_FILE);
 	else
 		return(NONE);

@@ -10,7 +10,7 @@
 
 # Compiler and Flags
 CC = gcc
-CFLAGS = $(INCLUDES) $(WFLAGS) $(DEBUG) $(FSAN)
+CFLAGS = $(INCLUDES) $(WFLAGS)
 WFLAGS = -Wall -Werror -Wextra
 INCLUDES = -I$(INC_LIBFT) -I$(INC_DIR)
 FSAN = -fsanitize=address,leak
