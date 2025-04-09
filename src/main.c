@@ -6,11 +6,12 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:58:16 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/08 14:31:36 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/09 17:39:59 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 
 int main()
 {
@@ -19,6 +20,8 @@ int main()
 	// else
 		// tokenization(av[1]);
 	
-	tokenization("cat > makefile");
+    t_data data = {0};
+
+	tokenization("cat > makefile", &data);
 	
 }

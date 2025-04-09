@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:56:02 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/08 23:11:31 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/09 17:26:01 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,24 +53,24 @@ enum e_quote_status
 	DOUBLE_QUOTE
 };
 
-typedef struct t_token
+typedef struct s_token
 {
 	char *value;
 	int type;
 	struct s_token *prev;
 	struct s_token *next;
-}s_token;
+}t_token;
 
 typedef struct s_data
 {
-	s_token *tokens;
+	t_token *tokens;
 
 }t_data;
 
 // 0.tokenization
 // lexer.c
 int tokenization (char *input, t_data *data);
-int save_word_or_seperator(int *i_current, char *input, int from, s_token **token);
+int save_word_or_seperator(int *i_current, char *input, int from, t_token **token);
 
 // lexer_utils.c
 int check_quote(int is_quote, char *input, int i_current);
@@ -80,7 +80,7 @@ int get_seperator(char *input, int i_current);
 void print_error(int error_code);
 
 // utils_t_token.c
-s_token *create_token(char *value, int type);
-void append_token(s_token **head, s_token *new_node);
+t_token *create_token(char *value, int type);
+void append_token(t_token **head, t_token *new_node);
 
 #endif
