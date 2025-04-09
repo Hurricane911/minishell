@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:56:02 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/09 17:26:01 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:10 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ enum e_token_type
 {
 	END_OF_FILE = -1,
 	NONE, //0
-	SPACES,
-	WORD,
-	PIPE,
-	HEREDOC,
-	REDIRECT_IN,
-	APPEND,
+	SPACES, //1
+	WORD, //2
+	PIPE, //3
+	HEREDOC, //4
+	REDIRECT_IN, //5
+	APPEND, //6
 	REDIRECT_OUT, //7
 };
 

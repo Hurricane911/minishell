@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 22:38:34 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/09 17:53:23 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/09 19:44:21 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void append_token(t_token **head, t_token *new_node)
 	if(!*head)
 	{
 		*head = new_node;
-		// ft_printf("Token value: %s/ Token type: %d\n", new_node->value, new_node->type);
+		ft_printf("Token value: %s/ Token type: %d\n", new_node->value, new_node->type);
 		return ;
 	}
 	while(temp->next)
@@ -46,5 +46,5 @@ void append_token(t_token **head, t_token *new_node)
 	temp->next = new_node;
 	new_node->prev = temp;
 
-	// ft_printf("Token value: %s/ Token type: %d\n", new_node->value, new_node->type);
+	ft_printf("Token value: %s/ Token type: %d\n", new_node->value, new_node->type);
 }

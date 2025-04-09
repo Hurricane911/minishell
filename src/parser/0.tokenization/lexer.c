@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:55:28 by joyim             #+#    #+#             */
-/*   Updated: 2025/04/09 17:26:18 by joyim            ###   ########.fr       */
+/*   Updated: 2025/04/09 20:07:40 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void save_word(char *input, int i_current, int from, t_token **token)
 	word = malloc(sizeof(char) * (i_current - from + 1));
 	if(!word)
 		return print_error(MALLOC_ERROR);
-	while(i < i_current)
+	while(from < i_current)
 		word[i++] = input[from++];
 	word[i] = '\0';
 	// ft_printf("%s\n", word);
