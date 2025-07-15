@@ -25,7 +25,7 @@ LIBFT_DIR = libft
 INC_LIBFT = libft/inc
 LIBFT = $(LIBFT_DIR)/libft.a
 
-SRC_DIR = src
+SRC_DIR = srcs
 SRC_DIRS = $(SRC_DIR) \
 			$(SRC_DIR)/parser \
 			$(SRC_DIR)/parser/0.tokenization \
