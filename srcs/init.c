@@ -1,40 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 10:56:02 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/15 19:00:42 by joyim            ###   ########.fr       */
+/*   Created: 2025/07/15 15:51:13 by joyim             #+#    #+#             */
+/*   Updated: 2025/07/15 15:51:22 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "minishell.h"
 
-#include "libft.h"
-#include "stdio.h"
-
-enum e_error_codes
-{
-	SUCCESS,
-};
-
-typedef struct s_envp
-{
-	char *variable_name;
-	char *value;
-	struct s_envp *prev;
-	struct s_envp *next;
-}t_envp;
-
-typedef struct s_data
-{
-	t_envp *our_envp;
-	char **envp_array;
-	int last_exit_code;
-}t_data;
-
-
-#endif
