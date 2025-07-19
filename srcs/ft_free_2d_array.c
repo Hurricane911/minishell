@@ -1,37 +1,58 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_free_2d_array.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/13 15:42:15 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/19 13:09:19 by joyim            ###   ########.fr       */
+/*   Created: 2025/07/15 18:48:27 by joyim             #+#    #+#             */
+/*   Updated: 2025/07/18 21:25:11 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void init_shell_data(t_data *data, char **envp);
-void init_envp(t_data *data, char **envp);
-void append_envp(t_envp **head, t_envp *new_node);
-t_envp *create_envp_node(char *var_name, char *value);
 void ft_free_2d_array(char **array);
 void free_envp_list(t_envp *head);
+void free_ptr(void **ptr);
 
 
-int main(int ac, char **av, char **envp)
+void ft_free_2d_array(char **array)
 {
-	t_data data;
-	// int i;
-	(void) ac;
-	(void) av;
-	// i = 0;
+	size_t i;
 
-	init_shell_data(&data, envp);
-	free_envp_list(data.our_envp);
-	ft_free_2d_array(data.envp_array);
+	i = 0;
 	
-	
-	return (0);
+	while(array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+
+	free(array);
+}
+
+void free_envp_list(t_envp *head)
+{
+	t_envp *current;
+	t_envp *next;
+
+	current = head;
+	while(current)
+	{
+		next = current->next;
+		free(current->variable_name);
+		free(current->value);
+		free(current);
+		current = next;
+	}
+}
+
+void free_ptr(void **ptr)
+{
+	if (ptr && *ptr)
+	{
+		free(*ptr);
+		*ptr = NULL;
+	}
 }

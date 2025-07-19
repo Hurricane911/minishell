@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 12:57:47 by joyim             #+#    #+#             */
-/*   Updated: 2025/02/06 19:18:07 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/18 16:39:53 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,24 @@ size_t	ft_strlen(const char *s)
 	return (len);
 }
 */
-char	*ft_strdup(const char *s1)
-{
-	char	*str;
-	size_t	i;
 
-	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i])
+char	*ft_strdup(const char *s)
+{
+	char	*dup;
+	size_t	size;
+
+	if (s == NULL)
 	{
-		str[i] = s1[i];
-		i++;
+		dup = (char *)malloc(sizeof (char));
+		dup[0] = '\0';
+		return (dup);
 	}
-	str[i] = 0;
-	return (str);
+	size = (ft_strlen(s) + 1) * sizeof(char);
+	dup = (char *)malloc(size);
+	if (!dup)
+		return (NULL);
+	ft_memmove(dup, s, size);
+	return (dup);
 }
 /*
 int main() {

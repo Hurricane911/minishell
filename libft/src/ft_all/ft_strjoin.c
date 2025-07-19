@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:53:28 by joyim             #+#    #+#             */
-/*   Updated: 2025/02/06 19:18:07 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/18 21:21:45 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,31 +24,32 @@ size_t	ft_strlen(const char *s)
 */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	size_t	i;
-	size_t	j;
-	char	*ptr;
-	size_t	total;
+	char	*tab;
+	int		i;
+	int		j;
 
-	total = ft_strlen(s1) + ft_strlen(s2);
-	ptr = (char *)malloc(sizeof(char) * total + 1);
-	if (ptr == NULL)
-		return (NULL);
 	i = 0;
 	j = 0;
-	while (s1[j] != '\0')
+	if (!s1 || !s2)
+		return (NULL);
+	tab = (char *)malloc(sizeof(*tab) * (ft_strlen(s1) + ft_strlen(s2)) + 1);
+	if (tab == 0)
+		return (NULL);
+	while (s1[i])
 	{
-		ptr[i++] = s1[j];
-		j++;
+		tab[i] = s1[i];
+		i++;
 	}
-	j = 0;
-	while (s2[j] != '\0')
+	while (s2[j])
 	{
-		ptr[i++] = s2[j];
+		tab[i] = s2[j];
 		j++;
+		i++;
 	}
-	ptr[i] = '\0';
-	return (ptr);
+	tab[i] = '\0';
+	return (tab);
 }
+
 /*
 int main()
 {
