@@ -39,7 +39,7 @@ INC_DIR = inc
 SRC = $(foreach dir,$(SRC_DIRS),$(wildcard $(dir)/*.c))
 OBJ = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRC))
 
-LIBFT_FLAGS = -L$(LIBFT_DIR) -lft
+LIBFT_FLAGS = -L$(LIBFT_DIR) -lft -lreadline
 
 #------------------------------------------------------------------------------#
 #                                 TARGETS                                      #

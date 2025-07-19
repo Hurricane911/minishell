@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:51:13 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/19 13:12:33 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/19 16:51:12 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void init_envp(t_data *data, char **envp)
 	}
 	// print_list(data->our_envp);
 	data->envp_array = convert_envp(data, data->our_envp);
-	print_array(data->envp_array);
+	// print_array(data->envp_array);
 }
 
 // static void print_array(char **array) //test for envp double array

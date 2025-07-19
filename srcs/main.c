@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:42:15 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/19 13:09:19 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/19 21:44:55 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void free_envp_list(t_envp *head);
 int main(int ac, char **av, char **envp)
 {
 	t_data data;
+	char *input;
 	// int i;
 	(void) ac;
 	(void) av;
@@ -31,6 +32,17 @@ int main(int ac, char **av, char **envp)
 	init_shell_data(&data, envp);
 	free_envp_list(data.our_envp);
 	ft_free_2d_array(data.envp_array);
+
+	while(1)
+	{
+		set_signal_input();
+
+		input = readline("minishell$ > ");
+		set_signals_executions();
+
+		(void)input;
+
+	}
 	
 	
 	return (0);

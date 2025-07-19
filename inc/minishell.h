@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:56:02 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/18 21:02:57 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/19 17:31:02 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 # define MINISHELL_H
 
 #include "libft.h"
-#include "stdio.h"
+// #include "stdio.h"
+# include <signal.h>
+# include <readline/readline.h>
+
+
 
 enum e_error_codes
 {
@@ -54,6 +58,12 @@ void free_ptr(void **ptr);
 // convert_envp.c
 char **convert_envp(t_data *data, t_envp *envp);
 int count_nodes(t_envp *head);
+
+// signals.c
+void set_signal_input(void);
+void ignore_sigquit(void);
+void set_signals_executions(void);
+void	handle_execution_signals(int signum);
 
 
 
