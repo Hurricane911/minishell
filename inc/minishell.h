@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:56:02 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/19 17:31:02 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/21 14:01:57 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,27 @@
 # include <signal.h>
 # include <readline/readline.h>
 
+enum e_token_type
+{
+	END_OF_FILE = -1,
+	NONE,
+	SPACES,
+	WORD,
+	VARIABLE,
+	PIPE,
+	REDIRECT_IN,
+	HEREDOC,
+	REDIRECT_OUT,
+	APPEND,
+};
 
+
+enum e_quote_status
+{
+	COMPLETE,
+	SINGLE_QUOTE,
+	DOUBLE_QUOTE,
+};
 
 enum e_error_codes
 {
@@ -33,12 +53,22 @@ typedef struct s_envp
 	struct s_envp *next;
 }t_envp;
 
+typedef struct s_token
+{
+	char *value;
+	char type;
+	struct s_token *next;
+	struct s_token *prev;
+}t_token;
+
 typedef struct s_data
 {
 	t_envp *our_envp;
 	char **envp_array;
 	int last_exit_code;
+	t_token *tokens;
 }t_data;
+
 
 // init.c
 void init_shell_data(t_data *data, char **envp);
@@ -65,6 +95,7 @@ void ignore_sigquit(void);
 void set_signals_executions(void);
 void	handle_execution_signals(int signum);
 
-
+// pars_input.c
+void parse_input(t_data *data, char *input);
 
 #endif

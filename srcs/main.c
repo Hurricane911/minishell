@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/13 15:42:15 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/19 21:44:55 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/19 21:50:27 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int main(int ac, char **av, char **envp)
 		input = readline("minishell$ > ");
 		set_signals_executions();
 
-		(void)input;
+		// (void)input;
+		parse_input(&data, input);
 
 	}
 	
