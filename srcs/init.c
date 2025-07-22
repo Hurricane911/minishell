@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 15:51:13 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/19 16:51:12 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/22 15:31:25 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void init_shell_data(t_data *data, char **envp)
 {
 	data->our_envp = NULL;
 	data->envp_array = NULL;  // Initialize to NULL to prevent garbage values
+	data->tokens = NULL;
 	init_envp(data, envp);
 }
 

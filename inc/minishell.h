@@ -6,7 +6,7 @@
 /*   By: joyim <joyim@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 10:56:02 by joyim             #+#    #+#             */
-/*   Updated: 2025/07/21 14:01:57 by joyim            ###   ########.fr       */
+/*   Updated: 2025/07/22 23:15:51 by joyim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 // #include "stdio.h"
 # include <signal.h>
 # include <readline/readline.h>
+
+# define MSG_UNCLOSED_SINGLE_QUOTE "minishell: unexpected \
+EOF while looking for matching '"
+# define MSG_UNCLOSED_DOUBLE_QUOTE "minishell: unexpected \
+EOF while looking for matching \""
+# define MSG_MALLOC_ERROR "malloc error"
+
 
 enum e_token_type
 {
@@ -32,17 +39,24 @@ enum e_token_type
 	APPEND,
 };
 
+enum e_error_codes
+{
+	SUCCESS,
+	FAILURE,
+	SYNTAX_ERROR,
+	UNCLOSED_SINGLE_QUOTE,
+	UNCLOSED_DOUBLE_QUOTE,
+	QUOTE_ERROR,
+	MALLOC_ERROR,
+	CMD_NOT_EXECUTABLE = 126,
+	CMD_NOT_FOUND = 127,
+};
 
 enum e_quote_status
 {
 	COMPLETE,
 	SINGLE_QUOTE,
 	DOUBLE_QUOTE,
-};
-
-enum e_error_codes
-{
-	SUCCESS,
 };
 
 typedef struct s_envp
@@ -75,6 +89,7 @@ void init_shell_data(t_data *data, char **envp);
 void init_envp(t_data *data, char **envp);
 void print_list(t_envp *head);
 
+// mkdir utils
 
 // envp_nodes.c
 void append_envp(t_envp **head, t_envp *new_node);
@@ -89,6 +104,16 @@ void free_ptr(void **ptr);
 char **convert_envp(t_data *data, t_envp *envp);
 int count_nodes(t_envp *head);
 
+// error.c
+void print_error(int error_code);
+
+// ft_isspace.c
+int	ft_isspace(int c);
+
+// utils_t_tokens.c
+t_token *create_node(char *word, int type);
+void append_node(t_token **head, t_token *new_node);
+
 // signals.c
 void set_signal_input(void);
 void ignore_sigquit(void);
@@ -96,6 +121,13 @@ void set_signals_executions(void);
 void	handle_execution_signals(int signum);
 
 // pars_input.c
-void parse_input(t_data *data, char *input);
+int parse_input(t_data *data, char *input);
+
+// lexer.c
+
+// lexer_utils.c
+int			check_quote(int is_quote, char *input, int i_current);
+int	get_seperator(char *input, int i_current);
+
 
 #endif
