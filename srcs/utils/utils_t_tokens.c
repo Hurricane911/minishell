@@ -14,7 +14,7 @@
 
 t_token *create_node(char *word, int type);
 void	append_node(t_token **head, t_token *new_node);
-// void print_head(t_token **head);
+void print_head(t_token **head);
 
 void append_node(t_token **head, t_token *new_node)
 {
@@ -33,22 +33,22 @@ void append_node(t_token **head, t_token *new_node)
 		temp = temp->next;
 	temp->next = new_node;
 	new_node->prev = temp;
-	// print_head(head);
+	print_head(head);
 }
 
 
-// void print_head(t_token **head)
-// {
-//     t_token *current = *head;  // Dereference to get actual token
+void print_head(t_token **head)
+{
+    t_token *current = *head;  // Dereference to get actual token
     
-//     printf("Tokens: ");
-//     while(current)
-//     {
-//         printf("[%s] ", current->value);  // Fixed: use printf and current->value
-//         current = current->next;          // Fixed: use current
-//     }
-//     printf("\n");
-// }
+    printf("Tokens: ");
+    while(current)
+    {
+        printf("[%s] ", current->value);  // Fixed: use printf and current->value
+        current = current->next;          // Fixed: use current
+    }
+    printf("\n");
+}
 
 t_token *create_node(char *word, int type)
 {
